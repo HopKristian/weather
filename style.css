@@ -1,0 +1,66 @@
+/* adding a css reset so i can both decide my own margins and paddings, since many elements comes with their own built in styling.
+  and box sizing so the respective elements in the index file will not become bigger than intended*/
+* { 
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+  
+}
+
+body{
+  /* grid */
+  display:grid;
+  grid-template-areas: 
+  ". main .";
+  /* adding and styling background image for the body*/
+  background-image: url("./images/bg-weather.webp");
+  background-position: center; /* centering image*/
+  background-size:cover; /* setting background to cover entire background -- TODO: might be stretched at bigger sizes. Can be fixed with media queries*/
+  /* google font for ubuntu*/
+  font-family: "Ubuntu", serif;
+  font-weight: 400;
+  font-style: normal;
+  /* styling the height and spacing of general text of body*/
+  line-height:1.25rem;
+  letter-spacing: 0.15rem;
+}
+
+main{
+  /* grid */
+  grid-area: main;
+  /* centering content with flex and j-c/a-i */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /* since main is all the content, we ensure it take up all of the view-area, no matter what resolution*/
+  width:100vw;
+  height: 100vh;
+}
+
+#weather-info{
+  /* making the elements go in a column(y-axis) instead of inline*/
+  display:flex;
+  flex-direction: column;
+  /* adding padding to the container , so it doesn't look as "cramped" */
+  padding:2.5rem;
+  /* gap will make the child elements(paragraphs holding weather info) of parent container #weather-info spaced out*/
+  gap:2.5rem;
+  /* styling border with radius(soft corners) and making the border borders several colors with gradient */
+
+  border: 3rem solid;
+  /* number 1 at end is border-image-slice and 1 uses the whole gradient*/
+  border-image: linear-gradient(90deg, grey, lightblue, rgb(124, 92, 33)) 1; 
+  /* infinite going on forever and alternate makes it go from 0-100% and back from 100-0% */
+  animation: borderGradientAnimation 1.5s infinite alternate; 
+}
+
+/* adding keyframe so we can change how the border of weather-info shows the color through animation above*/
+@keyframes borderGradientAnimation {
+  0% {
+    border-image-source: linear-gradient(90deg, grey, lightblue , rgb(124, 92, 33));
+  }
+  100% {
+    border-image-source: linear-gradient(90deg, rgb(124, 92, 33), lightblue, grey);
+  }
+}
+
