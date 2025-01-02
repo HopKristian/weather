@@ -13,11 +13,19 @@
     <header></header>
     <main>
       <section id="weather-info">
-        <p id="temperature-info">Temperature:</p>
-        <p id="condition-info">Condition: </p>
-        <p id="cloudiness-info">Cloudiness: </p>
+        <p id="temperature-info"></p>
+        <p id="condition-info"></p>
+        <p id="cloudiness-info"></p>
       </section>  
     </main>
+
+    <div id="modal-container" class="hidden">
+      <div id="modal-content-container">
+        <h2>Warning:</h2>
+        <p class="modal-warning-text"></p>
+        <button type="button" id="hazard-button">Understood</button>
+      </div>
+    </div>
 
 
     <script src="main.js" type="module"></script>

@@ -9,7 +9,7 @@ export class Weather{ // setting this class as export as we are using its values
 
 
   randomTemperature(){
-    const minTemp = -10;
+    const minTemp = -50;
     const maxTemp = 30;
     /* maxTemp - minTemp gives us the length of the interval, which is 30 - (-10) + 1 = 41(41 to include 30 when randomizing, since floor rounds down),
      and + minTemp will tell us that we start from the -10 position*/

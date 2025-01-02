@@ -12,10 +12,6 @@ body{
   display:grid;
   grid-template-areas: 
   ". main .";
-  /* adding and styling background image for the body*/
-  background-image: url("./images/bg-weather.webp");
-  background-position: center; /* centering image*/
-  background-size:cover; /* setting background to cover entire background -- TODO: might be stretched at bigger sizes. Can be fixed with media queries*/
   /* google font for ubuntu*/
   font-family: "Ubuntu", serif;
   font-weight: 400;
@@ -45,16 +41,16 @@ main{
   padding:2.5rem;
   /* gap will make the child elements(paragraphs holding weather info) of parent container #weather-info spaced out*/
   gap:2.5rem;
-  /* styling border with radius(soft corners) and making the border borders several colors with gradient */
-
-  border: 3rem solid;
+  /* styling border */
+  border: 1.2rem solid;
   /* number 1 at end is border-image-slice and 1 uses the whole gradient*/
-  border-image: linear-gradient(90deg, grey, lightblue, rgb(124, 92, 33)) 1; 
+  border-image: linear-gradient(90deg, rgb(57, 54, 189), lightblue, rgb(235, 187, 97)) 1; 
   /* infinite going on forever and alternate makes it go from 0-100% and back from 100-0% */
-  animation: borderGradientAnimation 1.5s infinite alternate; 
+  /*animation: borderGradientAnimation 1.5s infinite alternate; */
 }
 
 /* adding keyframe so we can change how the border of weather-info shows the color through animation above*/
+/*
 @keyframes borderGradientAnimation {
   0% {
     border-image-source: linear-gradient(90deg, grey, lightblue , rgb(124, 92, 33));
@@ -62,5 +58,100 @@ main{
   100% {
     border-image-source: linear-gradient(90deg, rgb(124, 92, 33), lightblue, grey);
   }
+} */
+
+/* styling the modal menu for hazardous weather */
+#modal-container{
+ 
+  /*display:none;*/ /* removing the visibility of the modal menu by default*/
+  position:fixed;
+  /* with top, left we can center the element, but only almost. transform ensures this by moving the element "back" since top and left makes the upper left corner the center*/
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  border:2rem solid;
+  width:25rem;
+  height:25rem;
+  border-radius: 2rem;
+  /* making this container flex so i can add flex:1 to its child element, making it fill up all the available space of the container(instead of using height:100% and width:100%)*/
+  display:flex; 
+  background-color: white;
+  
 }
 
+#modal-content-container{
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  /* making the content take up all the available space*/
+  flex:1;
+  /* making a gap between the content inside the container*/
+  gap:2rem;
+}
+
+
+/* keyframes that will be used to make the modal box blink blue as warning*/
+@keyframes blink-snow{
+  0%{
+    border-color:blue;
+  }
+  50%{
+    border-color: black;
+  }
+  100%{
+    border-color:blue;
+  }
+}
+
+.hazard-warning-blink-snow{
+  animation: blink-snow 1s infinite;
+}
+
+/* keyframes for the clear weather and hot(border blinking)*/
+@keyframes blink-clear-weather{
+  0%{
+    border-color:gold;
+  }
+  50%{
+    border-color: black;
+  }
+  100%{
+    border-color:gold;
+  }
+}
+
+.hazard-warning-blink-clear-weather{
+  animation: blink-clear-weather 1s infinite;
+}
+
+/* keyframes for when it rains(border blinking)*/
+@keyframes blink-raining-weather{
+  0%{
+    border-color: grey;
+  }
+  50%{
+    border-color: black;
+  }
+  100%{
+    border-color: grey;
+  }
+}
+
+.hazard-warning-blink-rain-weather{
+  animation: blink-raining-weather 1s infinite;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.modal-warning-text{
+  text-align:center; /* TODO: Find out why flex doesnt center the warning paragraph*/
+}
+
+#hazard-button{
+  /* button styling within the modal box*/
+  padding:1rem;
+  
+}
