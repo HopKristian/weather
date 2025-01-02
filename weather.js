@@ -32,4 +32,5 @@ export class Weather{ // setting this class as export as we are using its values
     
     return this.cloudiness = randomPercentage; // returning the new randomized value
   }
+
 } // end of class
